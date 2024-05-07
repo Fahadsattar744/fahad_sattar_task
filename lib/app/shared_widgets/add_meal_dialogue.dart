@@ -1,36 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class AddMealDialog extends StatelessWidget {
   final Function(String, String) onAddMeal;
-
-  const AddMealDialog({
-    Key? key,
-    required this.onAddMeal,
-  }) : super(key: key);
+  const AddMealDialog({super.key, required this.onAddMeal,});
 
   @override
   Widget build(BuildContext context) {
-    String name = '';
-    String calories = '';
+    String name = '',calories = '';
+    RxBool nameValid=false.obs,calorieValid=false.obs;
 
-    return AlertDialog(
-      title: Text('Add Meal'),
+    return Obx(() => AlertDialog(
+      title: const Text('Add Meal'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             onChanged: (value) {
               name = value;
+              nameValid.value=false;
             },
-            decoration: InputDecoration(labelText: 'Meal Name'),
+            decoration: InputDecoration(
+                labelText: 'Meal Name',
+                errorText: nameValid.isTrue ? "Required":  null,
+                labelStyle: const TextStyle(color: Colors.black),
+                errorStyle: const TextStyle(color: Colors.red)
+            ),
           ),
           TextField(
             keyboardType: TextInputType.phone,
             onChanged: (value) {
               calories = value;
+              calorieValid.value=false;
             },
-            decoration: InputDecoration(labelText: 'Calories'),
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
+            ],
+            decoration: InputDecoration(
+                labelText: 'Calories',
+                errorText: calorieValid.isTrue ? "Required":  null,
+                labelStyle: const TextStyle(color: Colors.black),
+                errorStyle: const TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -39,27 +50,21 @@ class AddMealDialog extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
         ),
         TextButton(
           onPressed: () {
             if (name.isEmpty || calories.isEmpty) {
-              // Show error message in snack bar
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(backgroundColor: Colors.black,behavior: SnackBarBehavior.floating,
-                  content: Text('Please fill in all fields',style: TextStyle(color: Colors.white),),
-                  duration: Duration(seconds: 2),
-                ),
-              );
+              nameValid.value=name.isEmpty ? true : false;
+              calorieValid.value=calories.isEmpty ? true :false;
             } else {
-              // Call onAddMeal only if both fields are not empty
               onAddMeal(name, calories);
               Navigator.of(context).pop();
             }
           },
-          child: Text('Add'),
+          child: const Text('Add'),
         ),
       ],
-    );
+    ));
   }
 }

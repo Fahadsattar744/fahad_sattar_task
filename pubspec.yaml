@@ -35,17 +35,13 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  get_cli: any
   get: 4.6.5
   permission_handler: ^10.0.0
   sn_progress_dialog:
   dio_log:
   device_preview: ^1.1.0
   sizer: ^2.0.15
-  image_cropper: ^2.0.3
-  geolocator: ^8.2.1
   fluttertoast:
-  image_picker: ^0.8.4+9
 
 dev_dependencies:
   flutter_test:
@@ -68,15 +64,22 @@ flutter:
     - assets/fonts/
     - assets/icons/
   fonts:
-    - family: Helvetica
+    - family: Poppins-Bold
       fonts:
-        - asset: assets/fonts/helvitika/Helvetica-Bold.ttf
-    - family: Helvetica-regular
+        - asset: assets/fonts/poppins/Poppins-Bold.ttf
+    - family: Poppins-Regular
       fonts:
-        - asset: assets/fonts/helvitika/Helvetica.ttf
-    - family: Helvetica Neue Regular
+        - asset: assets/fonts/poppins/Poppins-Regular.ttf
+    - family: Poppins-Light
       fonts:
-        - asset: assets/fonts/helvitika/Helvetica Neue Regular.otf
+        - asset: assets/fonts/poppins/Poppins-Light.ttf
+    - family: Poppins-Medium
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-Medium.ttf
+    - family: Poppins-SemiBold
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-SemiBold.ttf
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
