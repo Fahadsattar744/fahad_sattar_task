@@ -1,11 +1,5 @@
-import 'dart:io';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
-import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'App_colors.dart';
 
 class Utils {

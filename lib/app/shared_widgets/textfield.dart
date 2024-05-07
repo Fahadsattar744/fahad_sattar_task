@@ -143,7 +143,7 @@ class _UnderLineTextFieldState extends State<UnderLineTextField> {
         ),
         labelStyle: const TextStyle(
           color:  AppColors.greyColor,
-          fontFamily: AppFonts.helveticaRegular,
+          fontFamily: AppFonts.poppinsRegular,
           fontSize: 13.5,
         ),
       ),
